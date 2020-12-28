@@ -1,9 +1,10 @@
 
 interface ListProps {
+	currentForm: string,
 	resultText: string
 }
 
-const OutputForm = ({ resultText }: ListProps) => {
+const OutputForm = ({ currentForm, resultText }: ListProps) => {
 
 	const copyText = (text: string) => {
 		navigator.clipboard.writeText(text)
@@ -11,11 +12,16 @@ const OutputForm = ({ resultText }: ListProps) => {
 	}
 
 	return (
-		<form>
-			<label> Result: </label>
-			<textarea value={resultText} readOnly></textarea>
+		<form style={currentForm === 'outputForm' ? {} : { display: 'none' }}>
+			<div className='form-left-part'>
+				<label> Result: </label>
+				<textarea value={resultText} readOnly></textarea>
+			</div>
 
-			<input type='button' value='Copy' onClick={() => copyText(resultText)} />
+			<div className='form-right-part'>
+				<input type='button' value='Copy' onClick={() => copyText(resultText)} />
+			</div>
+
 		</form>
 	)
 }

@@ -1,0 +1,31 @@
+form {
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	justify-content: space-around;
+}
+
+form, input, textarea {
+	margin-bottom: 20px;
+}
+
+label, input[type=text], textarea {
+	display: block;
+}
+
+textarea {
+	height: 300px;
+}
+
+.form-btn {
+	text-align: center;
+	width: 40%;
+	cursor: pointer;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+input[type=button] {
+	margin-right: 20px;
+	font-size: 17px;
+}

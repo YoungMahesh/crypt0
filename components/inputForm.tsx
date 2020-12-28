@@ -1,12 +1,13 @@
 import { useState } from "react"
 
 interface ListProps {
+	currentForm: string,
 	updateResultText: Function,
 	setMessage1: Function,
 	changeCurrentForm: Function
 }
 
-const InputForm = ({ updateResultText, setMessage1, changeCurrentForm }: ListProps) => {
+const InputForm = ({ currentForm, updateResultText, setMessage1, changeCurrentForm }: ListProps) => {
 
 	const [inputText, updateInputText] = useState<string>('')
 	const [password, updatePassword] = useState<string>('')
@@ -41,22 +42,26 @@ const InputForm = ({ updateResultText, setMessage1, changeCurrentForm }: ListPro
 	}
 
 	return (
-		<form>
-			<label> Text: </label>
-			<textarea value={inputText} onChange={e => updateInputText(e.target.value)} ></textarea>
+		<form style={currentForm === 'inputForm' ? {} : { display: 'none' }}>
+			<div className='form-left-part'>
+				<label> Text: </label>
+				<textarea value={inputText} onChange={e => updateInputText(e.target.value)} ></textarea>
+			</div>
 
-			<label> Password: </label>
-			<input type='text' value={password} onChange={e => updatePassword(e.target.value)} />
+			<div className='form-right-part'>
+				<label> Password: </label>
+				<input type='text' value={password} onChange={e => updatePassword(e.target.value)} />
 
-			<input type='button' value='Encrypt' onClick={() => cryptText('encrypt')} />
+				<input type='button' value='Encrypt' onClick={() => cryptText('encrypt')} />
 
-			<input type='button' value='Decrypt' onClick={() => cryptText('decrypt')} />
+				<input type='button' value='Decrypt' onClick={() => cryptText('decrypt')} />
 
-			<input type='button' value='Clear' onClick={() => {
-				updateInputText('')
-				updatePassword('')
-				updateResultText('')
-			}} />
+				<input type='button' value='Clear' onClick={() => {
+					updateInputText('')
+					updatePassword('')
+					updateResultText('')
+				}} />
+			</div>
 		</form>
 	)
 }

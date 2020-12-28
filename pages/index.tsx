@@ -46,7 +46,7 @@ const Home = () => {
 		<main>
 			<Head>
 				<title>Encrypt-Decrypt Text</title>
-				<link rel='stylesheet' href='styles/crypt.css' />
+				<link rel='stylesheet' href='styles/form.css' />
 			</Head>
 
 			<Header title='Encrypt-Decrypt Text' />
@@ -66,13 +66,17 @@ const Home = () => {
 
 			<p>{message1}</p>
 
-			<div style={currentForm === 'inputForm' ? {} : { display: 'none' }}>
-				<InputForm updateResultText={updateResultText} setMessage1={setMessage1} changeCurrentForm={changeCurrentForm} />
-			</div >
+			<InputForm
+				currentForm={currentForm}
+				updateResultText={updateResultText}
+				setMessage1={setMessage1}
+				changeCurrentForm={changeCurrentForm}
+			/>
 
-			<div style={currentForm === 'outputForm' ? {} : { display: 'none' }}>
-				<OutputForm resultText={resultText} />
-			</div>
+			<OutputForm
+				currentForm={currentForm}
+				resultText={resultText}
+			/>
 
 		</main>
 	)
